@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass Sport Premium - Streaming Illimité à Vie</title>
+    <style>
+        /* Variables et Reset */
+        :root {
+            --bg-color: #0b0e14;
+            --text-main: #ffffff;
+            --text-muted: #a0aab2;
+            --accent: #ff4757;
+            --accent-glow: rgba(255, 71, 87, 0.4);
+            --card-bg: #151a23;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+        
+        /* Typographie */
+        h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 800; }
+        h2 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
+        p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; }
+        .highlight { color: var(--accent); }
+
+        /* Boutons */
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px var(--accent-glow);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .cta-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px var(--accent-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            background: radial-gradient(circle at top right, #1a1025, var(--bg-color));
+        }
+        .hero-content { flex: 1; max-width: 600px; z-index: 2; }
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Espace Vidéo / Motion Graphic (Format Vertical) */
+        .video-container {
+            width: 320px;
+            height: 570px;
+            background: #000;
+            border-radius: 30px;
+            border: 4px solid #2a2e38;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .video-container::before {
+            content: "Rendu Cinématique 3D / Animation ici";
+            color: var(--text-muted);
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+        }
+
+        /* Features / Compatibilité */
+        .features { padding: 100px 10%; background-color: var(--bg-color); }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+            border: 1px solid #2a2e38;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            background: #1a202c;
+            border-color: var(--accent);
+        }
+        .card-icon { font-size: 3rem; margin-bottom: 20px; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .app-count { display: inline-block; background: rgba(255, 71, 87, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-top: 15px; }
+
+        /* Animations au scroll */
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 100px; gap: 50px; }
+            .hero-content { max-width: 100%; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Section Héro -->
+    <section class="hero">
+        <div class="hero-content animate-on-scroll">
+            <h1>Le Sport en Streaming, <br><span class="highlight">Sans Limite et À Vie.</span></h1>
+            <p style="margin-bottom: 30px; margin-top: 20px;">
+                Ne payez plus jamais d'abonnements mensuels. Accédez à vos matchs, championnats et événements sportifs favoris en un seul paiement. Votre passeport ultime pour le sport.
+            </p>
+            <!-- N'oubliez pas de remplacer LIEN_DE_VOTRE_PRODUIT_CHARIOW par l'URL exacte de votre page produit -->
+            <a href="LIEN_DE_VOTRE_PRODUIT_CHARIOW" class="cta-btn" target="_blank">Obtenir mon accès sur Chariow</a>
+            <p style="margin-top: 15px; font-size: 0.9rem;">Paiement sécurisé via Chariow • Accès immédiat</p>
+        </div>
+        
+        <div class="hero-visual animate-on-scroll">
+            <div class="video-container">
+                <!-- Intégrez votre vidéo motion design ou animation ici -->
+                <!-- <video src="votre-video.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;"></video> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compatibilité -->
+    <section class="features">
+        <h2 class="animate-on-scroll">Une compatibilité <span class="highlight">Totale</span></h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto;" class="animate-on-scroll">
+            Peu importe l'écran sur lequel vous vous trouvez, nous avons la solution. Une suite complète d'applications optimisées pour vous garantir la meilleure qualité de diffusion.
+        </p>
+
+        <div class="grid">
+            <!-- Android -->
+            <div class="card animate-on-scroll">
+                <div class="card-icon">📱</div>
+                <h3>Android</h3>
+                <p>Tablettes et smartphones. Interface fluide et lecteur ultra-rapide.</p>
+                <div class="app-count">9 Applications incluses</div>
+            </div>
+
+            <!-- iOS -->
+            <div class="card animate-on-scroll">
+                <div class="card-icon">🍏</div>
+                <h3>iPhone / iPad</h3>
+                <p>Profitez de vos matchs en déplacement avec notre sélection iOS.</p>
+                <div class="app-count">3 Applications incluses</div>
+            </div>
+
+            <!-- PC -->
+            <div class="card animate-on-scroll">
+                <div class="card-icon">💻</div>
+                <h3>Ordinateur</h3>
+                <p>Windows et Mac. Pour une expérience de visionnage sur grand écran de bureau.</p>
+                <div class="app-count">3 Applications incluses</div>
+            </div>
+
+            <!-- Smart TV -->
+            <div class="card animate-on-scroll">
+                <div class="card-icon">📺</div>
+                <h3>Smart TV</h3>
+                <p>L'expérience stade, directement dans votre salon, en haute définition.</p>
+                <div class="app-count">1 Application incluse</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Final CTA -->
+    <section style="padding: 100px 10%; text-align: center; background: #151a23;">
+        <h2 class="animate-on-scroll">Prêt à changer votre façon de regarder le sport ?</h2>
+        <p class="animate-on-scroll" style="margin-bottom: 40px;">Paiement unique. Installation rapide. Support garanti.</p>
+        <a href="LIEN_DE_VOTRE_PRODUIT_CHARIOW" class="cta-btn animate-on-scroll" target="_blank">Acheter maintenant sur Chariow</a>
+    </section>
+
+    <!-- Script pour les animations au défilement -->
+    <script>
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
