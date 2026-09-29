@@ -3,43 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pass Sport Premium - Streaming Illimité à Vie</title>
+    <title>Live+ | Le Sport en Streaming Illimité à Vie</title>
     <style>
         /* Variables et Reset */
         :root {
             --bg-color: #0b0e14;
+            --bg-secondary: #121824;
             --text-main: #ffffff;
             --text-muted: #a0aab2;
             --accent: #ff4757;
-            --accent-glow: rgba(255, 71, 87, 0.4);
-            --card-bg: #151a23;
+            --accent-glow: rgba(255, 71, 87, 0.5);
+            --card-bg: rgba(21, 26, 35, 0.7);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
         
         /* Typographie */
-        h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 800; }
-        h2 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
-        p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 20px; font-weight: 900; letter-spacing: -1px; }
+        h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 20px; text-align: center; font-weight: 800; }
+        .subtitle { text-align: center; color: var(--text-muted); max-width: 700px; margin: 0 auto 50px auto; font-size: 1.1rem; }
+        p { font-size: 1.1rem; color: var(--text-muted); }
         .highlight { color: var(--accent); }
+        .text-center { text-align: center; }
 
-        /* Boutons */
+        /* Boutons & Animations CTA */
         .cta-btn {
-            display: inline-block;
-            background: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
             color: white;
-            padding: 18px 40px;
+            padding: 18px 45px;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             text-decoration: none;
             border-radius: 50px;
-            box-shadow: 0 10px 20px var(--accent-glow);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-            cursor: pointer;
+            box-shadow: 0 10px 30px var(--accent-glow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2.5s infinite;
         }
         .cta-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px var(--accent-glow);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px var(--accent-glow);
+            animation: none;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 71, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
         }
 
         /* Hero Section */
@@ -48,161 +63,273 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 10%;
-            background: radial-gradient(circle at top right, #1a1025, var(--bg-color));
-        }
-        .hero-content { flex: 1; max-width: 600px; z-index: 2; }
-        .hero-visual {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 120px 10% 80px;
+            background: radial-gradient(circle at top right, rgba(255, 71, 87, 0.1), var(--bg-color) 60%);
             position: relative;
         }
+        .hero-content { flex: 1; max-width: 650px; z-index: 2; }
+        .hero-visual { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; perspective: 1000px; }
         
-        /* Espace Vidéo / Motion Graphic (Format Vertical) */
+        .contact-badge { display: inline-block; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 30px; margin-bottom: 30px; font-size: 0.9rem; color: #a0aab2; backdrop-filter: blur(10px); }
+        .contact-badge span { color: #25D366; font-weight: bold; }
+
+        /* Vidéo Container 9:16 - Style Cinématique 3D */
         .video-container {
             width: 320px;
             height: 570px;
             background: #000;
             border-radius: 30px;
-            border: 4px solid #2a2e38;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px var(--accent-glow);
+            border: 2px solid rgba(255, 71, 87, 0.3);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px var(--accent-glow);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             position: relative;
+            transform: rotateY(-10deg) rotateX(5deg);
+            transition: transform 0.5s ease;
         }
+        .video-container:hover { transform: rotateY(0deg) rotateX(0deg); }
         .video-container::before {
-            content: "Rendu Cinématique 3D / Animation ici";
-            color: var(--text-muted);
+            content: "Votre Animation 3D Cinématique (9:16) Ici";
+            color: rgba(255,255,255,0.3);
             text-align: center;
             padding: 20px;
             position: absolute;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
 
-        /* Features / Compatibilité */
-        .features { padding: 100px 10%; background-color: var(--bg-color); }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
+        /* Sections Générales */
+        section { padding: 100px 10%; position: relative; }
+        .bg-alt { background-color: var(--bg-secondary); }
+
+        /* Grilles & Cartes (Glassmorphism) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
         .card {
             background: var(--card-bg);
+            backdrop-filter: blur(10px);
             padding: 40px 30px;
             border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, background 0.3s ease;
-            border: 1px solid #2a2e38;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
         .card:hover {
             transform: translateY(-10px);
-            background: #1a202c;
-            border-color: var(--accent);
+            border-color: rgba(255, 71, 87, 0.4);
+            background: rgba(21, 26, 35, 0.9);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
-        .card-icon { font-size: 3rem; margin-bottom: 20px; }
-        .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .app-count { display: inline-block; background: rgba(255, 71, 87, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-top: 15px; }
+        .card-icon { font-size: 3.5rem; margin-bottom: 20px; display: inline-block; animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        
+        .tag { display: inline-block; background: rgba(255, 71, 87, 0.15); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-top: 20px; font-size: 0.9rem; }
+
+        /* Liste des sports */
+        .sports-list { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 40px; }
+        .sport-item { background: rgba(255,255,255,0.05); padding: 12px 25px; border-radius: 12px; font-weight: bold; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .sport-item:hover { background: rgba(255,71,87,0.1); border-color: var(--accent); transform: scale(1.05); }
+
+        /* Step-by-Step (Processus Chariow) */
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; position: relative; }
+        .step { text-align: center; z-index: 2; }
+        .step-num { width: 60px; height: 60px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 20px; box-shadow: 0 0 20px var(--accent-glow); }
+        
+        /* FAQ Accordion */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        details { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 15px; overflow: hidden; transition: 0.3s; }
+        details:hover { border-color: rgba(255,255,255,0.2); }
+        summary { padding: 25px; font-size: 1.2rem; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: #fff; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: "+"; font-size: 1.5rem; color: var(--accent); transition: 0.3s; }
+        details[open] summary::after { content: "-"; }
+        .faq-content { padding: 0 25px 25px; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
 
         /* Animations au scroll */
-        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Footer */
+        footer { background: #000; padding: 50px 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
         /* Responsive */
         @media (max-width: 968px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 100px; gap: 50px; }
+            .hero { flex-direction: column; text-align: center; padding-top: 150px; gap: 60px; }
             .hero-content { max-width: 100%; }
-            h1 { font-size: 2.5rem; }
+            .video-container { transform: none; }
+            .sports-list { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Section Héro -->
+    <!-- HERO SECTION -->
     <section class="hero">
-        <div class="hero-content animate-on-scroll">
-            <h1>Le Sport en Streaming, <br><span class="highlight">Sans Limite et À Vie.</span></h1>
-            <p style="margin-bottom: 30px; margin-top: 20px;">
-                Ne payez plus jamais d'abonnements mensuels. Accédez à vos matchs, championnats et événements sportifs favoris en un seul paiement. Votre passeport ultime pour le sport.
+        <div class="hero-content reveal">
+            <div class="contact-badge">📞 Assistance WhatsApp : <span>+226 53 80 17 57</span></div>
+            <h1>Ne manquez plus aucun <span class="highlight">grand rendez-vous sportif.</span></h1>
+            <p style="margin: 25px 0 40px; font-size: 1.2rem; max-width: 90%;">
+                Pourquoi vous limiter à une seule application ou payer plusieurs abonnements ? <strong>Live+</strong> regroupe plusieurs solutions de streaming dans un seul pack. Le tout en un seul paiement à vie.
             </p>
-            <!-- N'oubliez pas de remplacer LIEN_DE_VOTRE_PRODUIT_CHARIOW par l'URL exacte de votre page produit -->
-            <a href="LIEN_DE_VOTRE_PRODUIT_CHARIOW" class="cta-btn" target="_blank">Obtenir mon accès sur Chariow</a>
-            <p style="margin-top: 15px; font-size: 0.9rem;">Paiement sécurisé via Chariow • Accès immédiat</p>
+            <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn" target="_blank">Obtenir mon pack Live+</a>
+            <div style="margin-top: 20px; display: flex; align-items: center; gap: 15px; font-size: 0.9rem;">
+                <span style="color: #4CAF50;">✔ Paiement unique sécurisé</span>
+                <span>•</span>
+                <span>⚡ Configuration en 5 minutes</span>
+            </div>
         </div>
         
-        <div class="hero-visual animate-on-scroll">
+        <div class="hero-visual reveal" style="transition-delay: 0.2s;">
             <div class="video-container">
-                <!-- Intégrez votre vidéo motion design ou animation ici -->
-                <!-- <video src="votre-video.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;"></video> -->
+                <!-- Mettez votre rendu cinématique 9:16 ici -->
+                <!-- <video src="votre-video-cinematique.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 28px; position: relative; z-index: 2;"></video> -->
             </div>
         </div>
     </section>
 
-    <!-- Section Compatibilité -->
-    <section class="features">
-        <h2 class="animate-on-scroll">Une compatibilité <span class="highlight">Totale</span></h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto;" class="animate-on-scroll">
-            Peu importe l'écran sur lequel vous vous trouvez, nous avons la solution. Une suite complète d'applications optimisées pour vous garantir la meilleure qualité de diffusion.
-        </p>
+    <!-- SECTION : COMMENT CA MARCHE (TRÈS IMPORTANT) -->
+    <section class="bg-alt">
+        <h2 class="reveal">Comment récupérer vos accès ?</h2>
+        <p class="subtitle reveal">Un processus simple, clair et transparent. Pas de magie, juste un système efficace.</p>
+        
+        <div class="steps">
+            <div class="step reveal">
+                <div class="step-num">1</div>
+                <h3>Paiement Sécurisé</h3>
+                <p>Validez votre commande en un clic via notre lien de paiement sécurisé Chariow.</p>
+            </div>
+            <div class="step reveal" style="transition-delay: 0.2s;">
+                <div class="step-num" style="background: #25D366; box-shadow: 0 0 20px rgba(37,211,102,0.4);">2</div>
+                <h3>Réception du Message</h3>
+                <p><strong>Étape cruciale :</strong> Immédiatement après le paiement, vous recevez un message détaillé directement sur la plateforme Chariow (et par e-mail).</p>
+            </div>
+            <div class="step reveal" style="transition-delay: 0.4s;">
+                <div class="step-num">3</div>
+                <h3>Téléchargement & Visionnage</h3>
+                <p>Ce message contient tous les liens de téléchargement, les applications et les tutoriels vidéos pour une installation en quelques minutes.</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- SECTION : CONTENU DU PACK / APPAREILS -->
+    <section>
+        <h2 class="reveal">Le Pack Ultime <span class="highlight">Tout-en-Un</span></h2>
+        <p class="subtitle reveal">Passez facilement d'un appareil à un autre selon vos envies. Nous avons inclus des solutions pour absolument tous vos écrans.</p>
+        
         <div class="grid">
-            <!-- Android -->
-            <div class="card animate-on-scroll">
+            <div class="card reveal">
                 <div class="card-icon">📱</div>
-                <h3>Android</h3>
-                <p>Tablettes et smartphones. Interface fluide et lecteur ultra-rapide.</p>
-                <div class="app-count">9 Applications incluses</div>
+                <h3>Smartphones & Tablettes (Android)</h3>
+                <p>Interface ultra-fluide pour suivre vos matchs en déplacement ou dans les transports.</p>
+                <div class="tag">9 Applications Incluses</div>
             </div>
-
-            <!-- iOS -->
-            <div class="card animate-on-scroll">
+            <div class="card reveal" style="transition-delay: 0.1s;">
                 <div class="card-icon">🍏</div>
-                <h3>iPhone / iPad</h3>
-                <p>Profitez de vos matchs en déplacement avec notre sélection iOS.</p>
-                <div class="app-count">3 Applications incluses</div>
+                <h3>Écosystème iOS</h3>
+                <p>Des solutions natives et optimisées spécialement pour votre iPhone ou votre iPad.</p>
+                <div class="tag">3 Applications Incluses</div>
             </div>
-
-            <!-- PC -->
-            <div class="card animate-on-scroll">
+            <div class="card reveal" style="transition-delay: 0.2s;">
                 <div class="card-icon">💻</div>
-                <h3>Ordinateur</h3>
-                <p>Windows et Mac. Pour une expérience de visionnage sur grand écran de bureau.</p>
-                <div class="app-count">3 Applications incluses</div>
+                <h3>Ordinateurs (PC / Mac)</h3>
+                <p>Travaillez tout en gardant un œil sur le score grâce à nos solutions pour bureau.</p>
+                <div class="tag">3 Applications Incluses</div>
             </div>
-
-            <!-- Smart TV -->
-            <div class="card animate-on-scroll">
+            <div class="card reveal" style="transition-delay: 0.3s;">
                 <div class="card-icon">📺</div>
-                <h3>Smart TV</h3>
-                <p>L'expérience stade, directement dans votre salon, en haute définition.</p>
-                <div class="app-count">1 Application incluse</div>
+                <h3>Smart TV & Android TV</h3>
+                <p>L'expérience ultime. Transformez votre salon en véritable stade avec une qualité d'image exceptionnelle.</p>
+                <div class="tag">1 Application Dédiée</div>
             </div>
         </div>
     </section>
 
-    <!-- Section Final CTA -->
-    <section style="padding: 100px 10%; text-align: center; background: #151a23;">
-        <h2 class="animate-on-scroll">Prêt à changer votre façon de regarder le sport ?</h2>
-        <p class="animate-on-scroll" style="margin-bottom: 40px;">Paiement unique. Installation rapide. Support garanti.</p>
-        <a href="LIEN_DE_VOTRE_PRODUIT_CHARIOW" class="cta-btn animate-on-scroll" target="_blank">Acheter maintenant sur Chariow</a>
+    <!-- SECTION : SPORTS INCLUS -->
+    <section class="bg-alt text-center">
+        <h2 class="reveal">Vos compétitions préférées sont ici.</h2>
+        <p class="subtitle reveal" style="margin-bottom: 20px;">Des centaines de chaînes sportives accessibles, couvrant tous les événements nationaux et internationaux.</p>
+        
+        <div class="sports-list reveal">
+            <div class="sport-item">⚽ Football</div>
+            <div class="sport-item">🏀 Basketball</div>
+            <div class="sport-item">🎾 Tennis</div>
+            <div class="sport-item">🥊 Boxe</div>
+            <div class="sport-item">🥋 MMA</div>
+            <div class="sport-item">🏎️ Sports mécaniques</div>
+            <div class="sport-item">🏐 Volleyball</div>
+            <div class="sport-item">🏉 Rugby</div>
+            <div class="sport-item">🚴 Cyclisme</div>
+        </div>
+
+        <div style="margin-top: 60px;" class="reveal">
+            <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn" target="_blank">Rejoindre Live+ Maintenant</a>
+        </div>
     </section>
 
-    <!-- Script pour les animations au défilement -->
-    <script>
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+    <!-- SECTION : FAQ -->
+    <section>
+        <h2 class="reveal">Questions Fréquentes</h2>
+        <p class="subtitle reveal">Tout ce que vous devez savoir avant de nous rejoindre.</p>
+        
+        <div class="faq-container">
+            <details class="reveal" open>
+                <summary>Comment vais-je recevoir les applications ?</summary>
+                <div class="faq-content">
+                    Après la validation de votre paiement, les applications n'apparaissent pas "par magie" sur votre téléphone. Vous recevrez instantanément un message sur Chariow (et une copie par e-mail) contenant un guide, les liens de téléchargement sécurisés et des tutoriels vidéos pour tout installer facilement.
+                </div>
+            </details>
+            <details class="reveal">
+                <summary>Est-ce que c'est difficile à installer ?</summary>
+                <div class="faq-content">
+                    Pas du tout ! Vous n'avez pas besoin d'être un expert en informatique. Votre pack comprend des guides étape par étape et des tutoriels vidéos simples en français. L'installation complète prend moins de 5 minutes.
+                </div>
+            </details>
+            <details class="reveal">
+                <summary>Dois-je payer un abonnement tous les mois ?</summary>
+                <div class="faq-content">
+                    Non. Live+ fonctionne sur le principe du paiement unique. Vous payez une seule fois pour obtenir le pack complet, et vous y avez accès à vie, sans aucun frais caché ni abonnement mensuel.
+                </div>
+            </details>
+            <details class="reveal">
+                <summary>Et si j'ai un problème ou besoin d'aide ?</summary>
+                <div class="faq-content">
+                    Nous ne vous laissons pas seul après l'achat ! Notre équipe technique est disponible pour vous assister avant, pendant et après votre installation. Il vous suffit de nous contacter sur WhatsApp au <strong>+226 53 80 17 57</strong>.
+                </div>
+            </details>
+        </div>
+    </section>
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    <!-- FOOTER -->
+    <footer>
+        <h2 style="font-size: 2rem; margin-bottom: 20px;">Prêt à vivre le sport autrement ?</h2>
+        <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn" style="margin-bottom: 40px;" target="_blank">Acheter sur Chariow</a>
+        <p style="font-size: 0.9rem;">
+            © 2026 Live+. Tous droits réservés.<br><br>
+            Assistance 7j/7 sur WhatsApp : <strong style="color: white;">+226 53 80 17 57</strong>
+        </p>
+    </footer>
+
+    <!-- Script pour les animations fluides au défilement -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Déclencher au chargement
     </script>
 </body>
 </html>
