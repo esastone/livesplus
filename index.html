@@ -15,16 +15,18 @@
             --card-bg: #151a23;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
         
         h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 800; }
-        h2 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
-        p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; }
+        h2 { font-size: 2.5rem; margin-bottom: 20px; text-align: center; }
+        p { font-size: 1.1rem; color: var(--text-muted); }
         .highlight { color: var(--accent); }
+        .text-center { text-align: center; }
 
         .cta-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             background: var(--accent);
             color: white;
@@ -38,21 +40,22 @@
         }
         .cta-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 30px var(--accent-glow); }
 
+        /* Sections générales */
+        section { padding: 80px 10%; }
+        
         /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 10%;
             background: radial-gradient(circle at top right, #1a1025, var(--bg-color));
         }
         .hero-content { flex: 1; max-width: 600px; z-index: 2; }
         .hero-visual { flex: 1; display: flex; justify-content: center; align-items: center; }
-        
-        .vignette-img { max-width: 150px; border-radius: 10px; margin-bottom: 20px; }
+        .vignette-img { max-width: 150px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
 
-        /* Design du Téléphone pour la Vidéo */
+        /* Design du Téléphone */
         .phone-mockup {
             width: 320px;
             height: 650px;
@@ -66,161 +69,254 @@
         .phone-mockup::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 25px;
-            background: #1a1e26;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            z-index: 10;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 120px; height: 25px; background: #1a1e26;
+            border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10;
         }
-        .phone-mockup video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
+        .phone-mockup video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Section Problème / Agitation */
+        .problem-section { background: #11151c; text-align: center; }
+        .problem-section h3 { font-size: 1.8rem; color: #ff6b81; margin-bottom: 15px; }
+        .problem-box {
+            background: rgba(255, 71, 87, 0.05);
+            border: 1px solid rgba(255, 71, 87, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
         }
 
-        /* Features */
-        .features { padding: 80px 10%; background-color: var(--bg-color); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
-        .card { background: var(--card-bg); padding: 40px 30px; border-radius: 20px; text-align: center; border: 1px solid #2a2e38; }
-        .card-icon { font-size: 3rem; margin-bottom: 20px; }
-        .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .app-count { display: inline-block; background: rgba(255, 71, 87, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-top: 15px; }
-
-        /* Défilement horizontal des Preuves Clients */
-        .social-proof { padding: 80px 0; background: #11151c; text-align: center; overflow: hidden; }
-        .social-proof h2, .social-proof p { padding: 0 10%; }
-        
-        .slider-container {
-            width: 100%;
-            overflow: hidden;
-            margin-top: 40px;
-            position: relative;
-        }
-        .slider-container::before, .slider-container::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            z-index: 2;
-        }
-        .slider-container::before { left: 0; background: linear-gradient(to right, #11151c, transparent); }
-        .slider-container::after { right: 0; background: linear-gradient(to left, #11151c, transparent); }
-
-        .slider-track {
+        /* Liste des Bénéfices */
+        .benefits-list {
             display: flex;
-            gap: 30px;
-            /* J'ai ralenti l'animation à 40s car il y a plus d'images */
-            animation: scroll 40s linear infinite; 
-            width: max-content;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 40px 0;
         }
-        .slider-track:hover {
-            animation-play-state: paused; 
-        }
-        .slider-track img {
-            max-width: 280px;
-            height: auto;
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: var(--card-bg);
+            padding: 20px;
             border-radius: 15px;
-            border: 2px solid #2a2e38;
+            border-left: 4px solid var(--accent);
         }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .benefit-icon { font-size: 1.5rem; }
+        .benefit-text h4 { margin-bottom: 5px; font-size: 1.2rem; }
+        .benefit-text p { font-size: 0.95rem; }
+
+        /* Défilement horizontal des Avis */
+        .social-proof { background: #0b0e14; text-align: center; overflow: hidden; padding-bottom: 40px; }
+        .slider-container { width: 100%; overflow: hidden; margin-top: 40px; position: relative; }
+        .slider-container::before, .slider-container::after {
+            content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2;
         }
+        .slider-container::before { left: 0; background: linear-gradient(to right, #0b0e14, transparent); }
+        .slider-container::after { right: 0; background: linear-gradient(to left, #0b0e14, transparent); }
+        .slider-track {
+            display: flex; gap: 30px; animation: scroll 40s linear infinite; width: max-content;
+        }
+        .slider-track:hover { animation-play-state: paused; }
+        .slider-track img { max-width: 280px; height: auto; border-radius: 15px; border: 2px solid #2a2e38; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Compatibilité */
+        .features { background-color: #11151c; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 50px; }
+        .card { background: var(--card-bg); padding: 40px 20px; border-radius: 20px; text-align: center; border: 1px solid #2a2e38; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .card-icon { font-size: 3rem; margin-bottom: 20px; }
+        .app-count { display: inline-block; background: rgba(255, 71, 87, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-top: 15px; font-size: 0.9rem; }
+
+        /* FAQ Section */
+        .faq-section { background: var(--bg-color); max-width: 800px; margin: 0 auto; }
+        details {
+            background: var(--card-bg);
+            border: 1px solid #2a2e38;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        details[open] { border-color: var(--accent); }
+        summary {
+            font-size: 1.2rem;
+            font-weight: bold;
+            outline: none;
+            list-style: none; /* Enlève la flèche par défaut */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; font-size: 1.5rem; color: var(--accent); }
+        details[open] summary::after { content: '-'; }
+        .faq-answer { margin-top: 15px; color: var(--text-muted); padding-top: 15px; border-top: 1px solid #2a2e38; }
+
+        /* Footer CTA */
+        .final-cta { text-align: center; background: radial-gradient(circle at center, #1a1025, #0b0e14); padding: 100px 10%; border-top: 1px solid #2a2e38; }
+        .guarantee { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; color: #4cd137; font-weight: bold; }
 
         .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
             .hero { flex-direction: column; text-align: center; padding-top: 100px; gap: 50px; }
-            .hero-content { max-width: 100%; }
+            .hero-content { max-width: 100%; display: flex; flex-direction: column; align-items: center; }
+            .benefits-list { text-align: left; }
             h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content animate-on-scroll">
-            <!-- J'ai corrigé le nom ici : couverture.png -->
-            <img src="couverture.png" alt="Couverture Produit" class="vignette-img" onerror="this.style.display='none'">
+            <img src="couverture.png" alt="Pass Sport Premium" class="vignette-img" onerror="this.style.display='none'">
             
-            <h1>Le Sport en Streaming, <br><span class="highlight">Sans Limite et À Vie.</span></h1>
-            <p style="margin-bottom: 30px; margin-top: 20px;">
-                Ne payez plus jamais d'abonnements mensuels. Accédez à vos matchs, championnats et événements sportifs favoris en un seul paiement. Votre passeport ultime pour le sport.
+            <h1>Tous les sports. <br><span class="highlight">Un seul paiement à vie.</span></h1>
+            <p style="margin-bottom: 30px; margin-top: 20px; font-size: 1.2rem;">
+                Ne payez plus jamais d'abonnements mensuels hors de prix. Accédez à 100% de vos matchs, compétitions et événements sportifs favoris en un clic, pour toujours.
             </p>
             
-            <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn" target="_blank">Obtenir mon accès sur Chariow</a>
+            <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn" target="_blank">
+                Débloquer mon accès maintenant
+            </a>
             
-            <p style="margin-top: 15px; font-size: 0.9rem;">Paiement sécurisé via Chariow • Accès immédiat</p>
+            <div class="guarantee">
+                <span>🔒 Paiement 100% Sécurisé via Chariow</span>
+            </div>
         </div>
         
         <div class="hero-visual animate-on-scroll">
             <div class="phone-mockup">
-                <!-- La vidéo est bien présente -->
                 <video src="animation.mp4" autoplay loop muted playsinline></video>
             </div>
         </div>
     </section>
 
-    <section class="social-proof">
-        <h2 class="animate-on-scroll">Ils l'ont installé et <span class="highlight">ça marche !</span></h2>
-        <p class="animate-on-scroll">Rejoignez ceux qui profitent déjà de tous leurs matchs sans coupure.</p>
+    <!-- PROBLÈME & SOLUTION -->
+    <section class="problem-section">
+        <div class="problem-box animate-on-scroll">
+            <h3>Marre de payer 80€/mois pour regarder le sport ?</h3>
+            <p>Entre les abonnements pour la Ligue 1, ceux pour la Ligue des Champions, la Formule 1 ou l'UFC... la facture devient vite insoutenable. <strong>C'est terminé.</strong> Avec notre Pass Premium, vous coupez court aux prélèvements mensuels et vous reprenez le contrôle.</p>
+        </div>
+
+        <h2 class="animate-on-scroll">Pourquoi notre pass est <span class="highlight">différent</span></h2>
         
-        <div class="slider-container animate-on-scroll">
-            <div class="slider-track">
-                <!-- Groupe 1 avec vos 11 avis -->
-                <img src="avis1.png" alt="Avis 1" onerror="this.style.display='none'">
-                <img src="avis2.png" alt="Avis 2" onerror="this.style.display='none'">
-                <img src="avis3.png" alt="Avis 3" onerror="this.style.display='none'">
-                <img src="avis4.png" alt="Avis 4" onerror="this.style.display='none'">
-                <img src="avis5.png" alt="Avis 5" onerror="this.style.display='none'">
-                <img src="avis6.png" alt="Avis 6" onerror="this.style.display='none'">
-                <img src="avis7.png" alt="Avis 7" onerror="this.style.display='none'">
-                <img src="avis8.png" alt="Avis 8" onerror="this.style.display='none'">
-                <img src="avis9.png" alt="Avis 9" onerror="this.style.display='none'">
-                <img src="avis10.png" alt="Avis 10" onerror="this.style.display='none'">
-                <img src="avis11.png" alt="Avis 11" onerror="this.style.display='none'">
-                
-                <!-- Groupe 2 (copie exacte pour que l'animation tourne en boucle) -->
-                <img src="avis1.png" alt="Avis 1" onerror="this.style.display='none'">
-                <img src="avis2.png" alt="Avis 2" onerror="this.style.display='none'">
-                <img src="avis3.png" alt="Avis 3" onerror="this.style.display='none'">
-                <img src="avis4.png" alt="Avis 4" onerror="this.style.display='none'">
-                <img src="avis5.png" alt="Avis 5" onerror="this.style.display='none'">
-                <img src="avis6.png" alt="Avis 6" onerror="this.style.display='none'">
-                <img src="avis7.png" alt="Avis 7" onerror="this.style.display='none'">
-                <img src="avis8.png" alt="Avis 8" onerror="this.style.display='none'">
-                <img src="avis9.png" alt="Avis 9" onerror="this.style.display='none'">
-                <img src="avis10.png" alt="Avis 10" onerror="this.style.display='none'">
-                <img src="avis11.png" alt="Avis 11" onerror="this.style.display='none'">
+        <div style="display: flex; justify-content: center;">
+            <div class="benefits-list animate-on-scroll">
+                <div class="benefit-item">
+                    <div class="benefit-icon">💸</div>
+                    <div class="benefit-text">
+                        <h4>Zéro abonnement mensuel</h4>
+                        <p>Vous payez une seule fois aujourd'hui. L'accès reste à vous pour toujours, sans aucun frais caché.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-text">
+                        <h4>Fluidité & Haute Définition</h4>
+                        <p>Des serveurs ultra-rapides pour une diffusion sans coupure, avec une qualité d'image jusqu'en 4K.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌍</div>
+                    <div class="benefit-text">
+                        <h4>Catalogue Mondial Intégral</h4>
+                        <p>Football, Basket, MMA, Tennis, F1... Tous les championnats mondiaux réunis sur une seule interface.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="features">
-        <h2 class="animate-on-scroll">Une compatibilité <span class="highlight">Totale</span></h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto;" class="animate-on-scroll">
-            Peu importe l'écran sur lequel vous vous trouvez, nous avons la solution.
-        </p>
-
-        <div class="grid">
-            <div class="card animate-on-scroll"><div class="card-icon">📱</div><h3>Android</h3><div class="app-count">9 Apps</div></div>
-            <div class="card animate-on-scroll"><div class="card-icon">🍏</div><h3>iPhone / iPad</h3><div class="app-count">3 Apps</div></div>
-            <div class="card animate-on-scroll"><div class="card-icon">💻</div><h3>Ordinateur</h3><div class="app-count">3 Apps</div></div>
-            <div class="card animate-on-scroll"><div class="card-icon">📺</div><h3>Smart TV</h3><div class="app-count">1 App</div></div>
+    <!-- PREUVE SOCIALE -->
+    <section class="social-proof">
+        <h2 class="animate-on-scroll">Ils ont franchi le pas et <span class="highlight">ça marche !</span></h2>
+        <p class="animate-on-scroll">Des centaines de passionnés profitent déjà de leurs soirées sportives sans stress.</p>
+        
+        <div class="slider-container animate-on-scroll">
+            <div class="slider-track">
+                <!-- Groupe 1 (Vos 11 avis) -->
+                <img src="avis1.png" alt="Avis 1" onerror="this.style.display='none'"><img src="avis2.png" alt="Avis 2" onerror="this.style.display='none'"><img src="avis3.png" alt="Avis 3" onerror="this.style.display='none'"><img src="avis4.png" alt="Avis 4" onerror="this.style.display='none'"><img src="avis5.png" alt="Avis 5" onerror="this.style.display='none'"><img src="avis6.png" alt="Avis 6" onerror="this.style.display='none'"><img src="avis7.png" alt="Avis 7" onerror="this.style.display='none'"><img src="avis8.png" alt="Avis 8" onerror="this.style.display='none'"><img src="avis9.png" alt="Avis 9" onerror="this.style.display='none'"><img src="avis10.png" alt="Avis 10" onerror="this.style.display='none'"><img src="avis11.png" alt="Avis 11" onerror="this.style.display='none'">
+                
+                <!-- Groupe 2 (Copie pour boucle) -->
+                <img src="avis1.png" alt="Avis 1" onerror="this.style.display='none'"><img src="avis2.png" alt="Avis 2" onerror="this.style.display='none'"><img src="avis3.png" alt="Avis 3" onerror="this.style.display='none'"><img src="avis4.png" alt="Avis 4" onerror="this.style.display='none'"><img src="avis5.png" alt="Avis 5" onerror="this.style.display='none'"><img src="avis6.png" alt="Avis 6" onerror="this.style.display='none'"><img src="avis7.png" alt="Avis 7" onerror="this.style.display='none'"><img src="avis8.png" alt="Avis 8" onerror="this.style.display='none'"><img src="avis9.png" alt="Avis 9" onerror="this.style.display='none'"><img src="avis10.png" alt="Avis 10" onerror="this.style.display='none'"><img src="avis11.png" alt="Avis 11" onerror="this.style.display='none'">
+            </div>
         </div>
     </section>
 
-    <section style="padding: 100px 10%; text-align: center; background: #151a23;">
-        <h2 class="animate-on-scroll">Prêt à changer votre façon de regarder le sport ?</h2>
-        <p class="animate-on-scroll" style="margin-bottom: 40px;">Paiement unique. Installation rapide. Support garanti.</p>
+    <!-- COMPATIBILITÉ -->
+    <section class="features">
+        <h2 class="animate-on-scroll">Compatible avec <span class="highlight">tous vos appareils</span></h2>
+        <p class="text-center animate-on-scroll">Installez-le où vous voulez, quand vous voulez.</p>
+
+        <div class="grid">
+            <div class="card animate-on-scroll"><div class="card-icon">📱</div><h3>Android</h3><p style="font-size: 0.9rem; margin-top:10px;">Smartphones & Tablettes</p><div class="app-count">Installation en 2 min</div></div>
+            <div class="card animate-on-scroll"><div class="card-icon">🍏</div><h3>Apple</h3><p style="font-size: 0.9rem; margin-top:10px;">iPhone, iPad & Apple TV</p><div class="app-count">100% Supporté</div></div>
+            <div class="card animate-on-scroll"><div class="card-icon">💻</div><h3>Ordinateur</h3><p style="font-size: 0.9rem; margin-top:10px;">Windows & Mac OS</p><div class="app-count">Accès Web direct</div></div>
+            <div class="card animate-on-scroll"><div class="card-icon">📺</div><h3>Smart TV</h3><p style="font-size: 0.9rem; margin-top:10px;">Samsung, LG, Android TV</p><div class="app-count">Qualité 4K</div></div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section animate-on-scroll">
+        <h2>Foire Aux <span class="highlight">Questions</span></h2>
+        <p class="text-center" style="margin-bottom: 40px;">Vous avez des doutes ? Nous avons les réponses.</p>
+
+        <details>
+            <summary>Est-ce vraiment un paiement unique ?</summary>
+            <div class="faq-answer">
+                Oui, absolument. Contrairement aux opérateurs classiques qui vous prélèvent chaque mois, vous ne payez qu'une seule fois aujourd'hui pour obtenir votre accès à vie. Il n'y a aucun frais caché ni renouvellement automatique.
+            </div>
+        </details>
         
-        <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn animate-on-scroll" target="_blank">Acheter maintenant sur Chariow</a>
+        <details>
+            <summary>L'installation est-elle compliquée ?</summary>
+            <div class="faq-answer">
+                Pas du tout. Immédiatement après votre paiement, vous recevrez un guide d'installation étape par étape très simple. Même si vous n'êtes pas à l'aise avec la technologie, il vous faudra moins de 5 minutes pour tout configurer.
+            </div>
+        </details>
+
+        <details>
+            <summary>Quels sports sont réellement inclus ?</summary>
+            <div class="faq-answer">
+                Tout ce qui est diffusé en direct ! Football (tous les championnats et coupes), Basketball (NBA, Euroleague), Sports de combat (UFC, Boxe), Sports mécaniques (F1, Moto GP), Tennis, Rugby, et bien plus encore.
+            </div>
+        </details>
+
+        <details>
+            <summary>Puis-je l'utiliser sur plusieurs écrans en même temps ?</summary>
+            <div class="faq-answer">
+                Votre accès vous permet de configurer l'application sur tous vos appareils (Téléphone, TV, PC). Vous pouvez regarder vos contenus en toute fluidité depuis l'appareil de votre choix.
+            </div>
+        </details>
+
+        <details>
+            <summary>Que faire si j'ai besoin d'aide ?</summary>
+            <div class="faq-answer">
+                Notre équipe de support technique est disponible pour vous accompagner si vous rencontrez le moindre souci lors de l'installation ou de l'utilisation. Un contact vous sera fourni avec votre commande.
+            </div>
+        </details>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta animate-on-scroll">
+        <h2>Prêt à changer votre façon de regarder le sport ?</h2>
+        <p style="margin-bottom: 40px; font-size: 1.2rem;">Ne ratez plus aucun grand match. Rejoignez la révolution du streaming sportif aujourd'hui.</p>
+        
+        <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn" target="_blank">
+            👉 Obtenir mon Pass à Vie Maintenant
+        </a>
+        <div class="guarantee" style="margin-top: 20px;">
+            <span>⚡ Accès immédiat après paiement</span>
+        </div>
     </section>
 
     <script>
