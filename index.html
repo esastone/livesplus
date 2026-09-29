@@ -114,7 +114,8 @@
         .slider-track {
             display: flex;
             gap: 30px;
-            animation: scroll 20s linear infinite; 
+            /* J'ai ralenti l'animation à 40s car il y a plus d'images */
+            animation: scroll 40s linear infinite; 
             width: max-content;
         }
         .slider-track:hover {
@@ -145,14 +146,14 @@
 
     <section class="hero">
         <div class="hero-content animate-on-scroll">
-            <img src="vignette.png" alt="Vignette Produit" class="vignette-img" onerror="this.style.display='none'">
+            <!-- J'ai corrigé le nom ici : couverture.png -->
+            <img src="couverture.png" alt="Couverture Produit" class="vignette-img" onerror="this.style.display='none'">
             
             <h1>Le Sport en Streaming, <br><span class="highlight">Sans Limite et À Vie.</span></h1>
             <p style="margin-bottom: 30px; margin-top: 20px;">
                 Ne payez plus jamais d'abonnements mensuels. Accédez à vos matchs, championnats et événements sportifs favoris en un seul paiement. Votre passeport ultime pour le sport.
             </p>
             
-            <!-- Lien Chariow intégré ici -->
             <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn" target="_blank">Obtenir mon accès sur Chariow</a>
             
             <p style="margin-top: 15px; font-size: 0.9rem;">Paiement sécurisé via Chariow • Accès immédiat</p>
@@ -160,6 +161,7 @@
         
         <div class="hero-visual animate-on-scroll">
             <div class="phone-mockup">
+                <!-- La vidéo est bien présente -->
                 <video src="animation.mp4" autoplay loop muted playsinline></video>
             </div>
         </div>
@@ -171,15 +173,31 @@
         
         <div class="slider-container animate-on-scroll">
             <div class="slider-track">
-                <!-- Groupe 1 d'images -->
-                <img src="avis1.png" alt="Preuve client 1" onerror="this.style.display='none'">
-                <img src="avis2.png" alt="Preuve client 2" onerror="this.style.display='none'">
-                <img src="avis3.png" alt="Preuve client 3" onerror="this.style.display='none'">
+                <!-- Groupe 1 avec vos 11 avis -->
+                <img src="avis1.png" alt="Avis 1" onerror="this.style.display='none'">
+                <img src="avis2.png" alt="Avis 2" onerror="this.style.display='none'">
+                <img src="avis3.png" alt="Avis 3" onerror="this.style.display='none'">
+                <img src="avis4.png" alt="Avis 4" onerror="this.style.display='none'">
+                <img src="avis5.png" alt="Avis 5" onerror="this.style.display='none'">
+                <img src="avis6.png" alt="Avis 6" onerror="this.style.display='none'">
+                <img src="avis7.png" alt="Avis 7" onerror="this.style.display='none'">
+                <img src="avis8.png" alt="Avis 8" onerror="this.style.display='none'">
+                <img src="avis9.png" alt="Avis 9" onerror="this.style.display='none'">
+                <img src="avis10.png" alt="Avis 10" onerror="this.style.display='none'">
+                <img src="avis11.png" alt="Avis 11" onerror="this.style.display='none'">
                 
-                <!-- Groupe 2 d'images -->
-                <img src="avis1.png" alt="Preuve client 1" onerror="this.style.display='none'">
-                <img src="avis2.png" alt="Preuve client 2" onerror="this.style.display='none'">
-                <img src="avis3.png" alt="Preuve client 3" onerror="this.style.display='none'">
+                <!-- Groupe 2 (copie exacte pour que l'animation tourne en boucle) -->
+                <img src="avis1.png" alt="Avis 1" onerror="this.style.display='none'">
+                <img src="avis2.png" alt="Avis 2" onerror="this.style.display='none'">
+                <img src="avis3.png" alt="Avis 3" onerror="this.style.display='none'">
+                <img src="avis4.png" alt="Avis 4" onerror="this.style.display='none'">
+                <img src="avis5.png" alt="Avis 5" onerror="this.style.display='none'">
+                <img src="avis6.png" alt="Avis 6" onerror="this.style.display='none'">
+                <img src="avis7.png" alt="Avis 7" onerror="this.style.display='none'">
+                <img src="avis8.png" alt="Avis 8" onerror="this.style.display='none'">
+                <img src="avis9.png" alt="Avis 9" onerror="this.style.display='none'">
+                <img src="avis10.png" alt="Avis 10" onerror="this.style.display='none'">
+                <img src="avis11.png" alt="Avis 11" onerror="this.style.display='none'">
             </div>
         </div>
     </section>
@@ -202,7 +220,6 @@
         <h2 class="animate-on-scroll">Prêt à changer votre façon de regarder le sport ?</h2>
         <p class="animate-on-scroll" style="margin-bottom: 40px;">Paiement unique. Installation rapide. Support garanti.</p>
         
-        <!-- Lien Chariow intégré ici -->
         <a href="https://chariow.ly/BJXWBZ5YEB/checkout" class="cta-btn animate-on-scroll" target="_blank">Acheter maintenant sur Chariow</a>
     </section>
 
